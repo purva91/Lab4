@@ -15,14 +15,16 @@
 	HttpSession aSession = request.getSession();
 	String uname = (String) aSession.getAttribute("username");
 	String role = (String) aSession.getAttribute("role");
+	String loggedIn = (String) aSession.getAttribute("loggedIn");
+	aSession.setAttribute("loggedIn", uname);
 %>
-	<form name="addStory" action="addStory" method="post">
+	<form name="addStory" action="addStory" method="post">		
     	Title: <input type="text" name="st_title" /> <br/><br>    
     	Story: <input type="text" name="st_desc" /> <br/><br>   
-    	<input type="radio" name="access" value="subsonly">Subscribers Only<br>
-		<input type="radio" name="access" value="public">Public
-    	<input type="submit" value="Add Story" />
-    	<input type="reset" value="Reset"/>     
+    	<input type="radio" name="access" value="subsonly">Subscribers Only<br/><br>  
+		<input type="radio" name="access" value="public">Public<br/><br>  
+    	<input type="submit" value="Add Story" /><br/><br>  
+    	<input type="reset" value="Reset"/><br/><br>  
 	</form>
 	
 	

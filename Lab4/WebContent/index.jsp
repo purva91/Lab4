@@ -25,11 +25,16 @@
 			out.println("<td><a href= "+ "./addStory.jsp"+">Create New Story</a></td>");
 		}
 	}
-		NewsItemBean[] news = NewsDAOFactory.getTheDAO().getNews();
-		for (int i = 0; i < news.length; i++) 
-		{
-			out.println("<td>"+news[i].getItemTitle()+"</td>");
-		}
+	NewsItemBean[] news = NewsDAOFactory.getTheDAO().getNews();
+	aSession.setAttribute("newsList",news);
+	
+	//HttpSession aSession = request.getSession();
+	for (int i = 0; i < news.length; i++) 
+	{
+		aSession.setAttribute("ItemId",i);
+		out.println("<td><a href= " + " ./viewfullstory.jsp>"+ news[i].getItemTitle()+"</a></td>");
+	}
+	
 %>
 
 	<p>NEW news is a news resource about NEW stuff.</p>

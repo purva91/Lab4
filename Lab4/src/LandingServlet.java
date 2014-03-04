@@ -39,6 +39,7 @@ public class LandingServlet extends HttpServlet
 		// TODO Auto-generated method stub
 		
 		System.out.println("Came to Landing Page");
+		/*
 		String[] news_title={"News1","News2","News3"};
 		String[] news_story={"This is News1","This is News2","This is News3"};
 		NewsItemBean news1 = new NewsItemBean("News1", "This is News1","Public");
@@ -65,8 +66,8 @@ public class LandingServlet extends HttpServlet
 			NewsDAOFactory.getTheDAO().createNewsItem(news2);
 			NewsDAOFactory.getTheDAO().createNewsItem(news3);
 		}
-		
-		HttpSession aSession = request.getSession(false);
+		*/
+		HttpSession aSession = request.getSession();
 		String loggedIn = (String) aSession.getAttribute("loggedIn");
 		
 		String role;
@@ -75,6 +76,7 @@ public class LandingServlet extends HttpServlet
 		aSession.setAttribute("role", role);
 		if((loggedIn==null)||(!(request.isRequestedSessionIdValid())))
 			aSession.invalidate();
+		
 				
 		
 	}
