@@ -62,17 +62,18 @@ public class LoginServlet extends HttpServlet
 		// HERE YOU HAVE TO CHECK IF THE USER EXISTS OR NOT!
 		else 
 		{
-			UserBean user = NewsDAOFactory.getTheDAO().getUser(username);
+			UserBean user = ModelBean.getUser(username);
 			if(user!=null)
 					role = user.getRole().toString();
 			
-			System.out.println("Role "+role);
+			//System.out.println("Role "+role);
 			if((user == null)||(role.equalsIgnoreCase("Guest")))
 			{
 				//doesn't exist
 				System.out.println("New user");
 				//out.println("New user");
-				response.sendRedirect("./register.jsp");
+				//response.sendRedirect("./register.jsp");
+				request.getRequestDispatcher("/register.jsp").forward(request, response);
 				return;
 			}
 			

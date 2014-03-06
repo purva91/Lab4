@@ -1,9 +1,12 @@
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -43,6 +46,12 @@ public class FullStoryServlet extends HttpServlet
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession aSession = request.getSession();
+		String uname = (String) aSession.getAttribute("username");
+		String loggedIn = (String) aSession.getAttribute("loggedIn");
+
+		aSession.setAttribute("loggedIn",loggedIn);
+		aSession.setAttribute("username",uname);
 	}
 
 }

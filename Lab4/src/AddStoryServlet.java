@@ -10,11 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import edu.asupoly.ser422.lab4.dao.INewsDAO;
-import edu.asupoly.ser422.lab4.dao.NewsDAOFactory;
 import edu.asupoly.ser422.lab4.model.NewsItemBean;
-import edu.asupoly.ser422.lab4.model.UserBean;
-import edu.asupoly.ser422.lab4.model.UserBean.Role;
 
 /**
  * Servlet implementation class AddStoryServlet
@@ -50,10 +46,15 @@ public class AddStoryServlet extends HttpServlet
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		HttpSession aSession = request.getSession();
+		HttpSession aSession = request.getSession(false);
 		String uname = (String) aSession.getAttribute("username");
 		String role = (String) aSession.getAttribute("role");
 		String loggedIn = (String) aSession.getAttribute("loggedIn");
+		
+		System.out.println("Session key" +aSession.getId());
+		/*aSession.setAttribute("loggedIn",uname);
+		aSession.setAttribute("username",uname);
+		aSession.setAttribute("role",role);*/
 		
 		String storyTitle = request.getParameter("st_title");
 		String storyDesc = request.getParameter("st_desc");
@@ -65,7 +66,7 @@ public class AddStoryServlet extends HttpServlet
 		repId = uname;
 		
 		NewsItemBean newsItem = new NewsItemBean(storyTitle, storyDesc,repId);
-		NewsDAOFactory.getTheDAO().createNewsItem(newsItem);
+		ModelBean.createNewsItem(newsItem);
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 		//out.println("<html><head><p>"+"This is the AddStory Page"+"</p></head></html>");
 		// TODO Auto-generated method stub

@@ -16,13 +16,13 @@
 %>
 <p>You are not registered. Enter Role to register</p>
 <form name="register" action="register" method="post">
-    Username: <input type="text" name="username" value=<%= uname %> /> <br/>
-    Password: <input type="password" name="password" value=<%= passwd %> /> <br/>
-    Role: <input type="text" name="role" /> <br/>
+    Username: <input type="text" name="username" value=<%= uname %> /> <br><br/>
+    Password: <input type="password" name="password" value=<%= passwd %> /> <br><br/>
+    Role: <input type="text" name="role" /> <br><br/>
     
     <input type="submit" value="Register" />
     
-    <a href="./index.html">Back</a>
+    <a href="./index.jsp">Back</a>
   </form>
 </body>
 </html>

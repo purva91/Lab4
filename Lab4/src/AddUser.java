@@ -29,7 +29,7 @@ public class AddUser extends HttpServlet
 		String uname = (String) aSession.getAttribute("username");
 		String passwd= (String) aSession.getAttribute("password");
 		*/
-		request.getRequestDispatcher("/register.jsp").forward(request, response);
+		//request.getRequestDispatcher("/register.jsp").forward(request, response);
 	}
 
 	@Override
@@ -51,38 +51,39 @@ public class AddUser extends HttpServlet
 		
 		if (null != username && null != password && !username.isEmpty()	&& !password.isEmpty()) 
 		{
-			if(role1.equals(Role.GUEST.toString()))
+			if(role1.equalsIgnoreCase(Role.GUEST.toString()))
 			{
 				out.println("Invalid Role: Enter Reporter or Subscriber");
 				response.sendRedirect(request.getRequestURI());
 				return;
 			}
 			
-			else if(role1.equals(Role.REPORTER.toString()))
+			else if(role1.equalsIgnoreCase(Role.REPORTER.toString()))
 			{
 				UserBean nRep = new UserBean(username, password,Role.REPORTER);
-				NewsDAOFactory.getTheDAO().createUser(nRep);
+				ModelBean.createUser(nRep);
 				loggedIn = nRep.getUserId();
 				aSession.setAttribute("loggedIn", loggedIn);
 				request.getRequestDispatcher("./index.jsp").forward(request, response);	
-				System.out.println("Added");
+				System.out.println("Added REPORTER: "+loggedIn);
 				return;
 				
 			}
 			
-			else if(role1.equals(Role.SUBSCRIBER.toString()))
+			else if(role1.equalsIgnoreCase(Role.SUBSCRIBER.toString()))
 			{
 				UserBean nSub = new UserBean(username, password,Role.SUBSCRIBER);
-				NewsDAOFactory.getTheDAO().createUser(nSub);
+				ModelBean.createUser(nSub);
 				loggedIn = nSub.getUserId();
 				aSession.setAttribute("loggedIn", loggedIn);
 				request.getRequestDispatcher("./index.jsp").forward(request, response);	
-				System.out.println("Added");
+				System.out.println("Added SUBSCRIBER: "+loggedIn);
 				return;
 			}
 			else
 			{
 				out.println("Invalid Role");
+				aSession.setAttribute("loggedIn", loggedIn);
 				request.getRequestDispatcher("./index.jsp").forward(request, response);	
 				return;
 			}

@@ -1,3 +1,4 @@
+package edu.asupoly.ser422.lab4.model;
 import edu.asupoly.ser422.lab4.dao.NewsDAOFactory;
 import edu.asupoly.ser422.lab4.dao.NewsDefaultDAO;
 import edu.asupoly.ser422.lab4.model.NewsItemBean;

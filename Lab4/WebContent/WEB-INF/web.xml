@@ -28,8 +28,7 @@
     <servlet-name>LandingServlet</servlet-name>
     <url-pattern>/index</url-pattern>
   </servlet-mapping>
-  
-   <servlet>
+  <servlet>
     <servlet-name>AddStoryServlet</servlet-name>
     <servlet-class>AddStoryServlet</servlet-class>
   </servlet>

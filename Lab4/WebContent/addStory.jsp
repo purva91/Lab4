@@ -12,11 +12,13 @@
 </head>
 <body>
 <%
-	HttpSession aSession = request.getSession();
+	HttpSession aSession = request.getSession(false);
 	String uname = (String) aSession.getAttribute("username");
 	String role = (String) aSession.getAttribute("role");
 	String loggedIn = (String) aSession.getAttribute("loggedIn");
-	aSession.setAttribute("loggedIn", uname);
+	/* aSession.setAttribute("loggedIn",uname);
+	aSession.setAttribute("username",uname);
+	aSession.setAttribute("role",role);*/
 %>
 	<form name="addStory" action="addStory" method="post">		
     	Title: <input type="text" name="st_title" /> <br/><br>    
